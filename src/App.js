@@ -149,6 +149,11 @@ class App extends Component {
 
   addUser = (e) => {
     e.preventDefault();
+    let {setEmail,setName,setPhone,setAge} = this.state;
+
+    if(setEmail=== '' || setName === '' || setAge === '' || setPhone === '') {
+      return window.alert("Fields are empty")
+    }
 
     const userData = {
       name: this.state.setName,
@@ -156,6 +161,7 @@ class App extends Component {
       phone: this.state.setPhone,
       email: this.state.setEmail
     }
+
     if(this.state.setEdit) {
       let copy = this.state.user;
       Object.assign(copy[this.state.setActive],userData);
@@ -193,15 +199,16 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1>CRUD Application</h1>
         <form>
           <label>Name</label>
           <input type="text" className='form-control' name="setName" value={this.state.setName} onChange={this.changeHandler} />
           <label>Age</label>
-          <input type="text" className='form-control' name="setAge" value={this.state.setAge} onChange={this.changeHandler} />
+          <input type="number" className='form-control' name="setAge" value={this.state.setAge} onChange={this.changeHandler} />
           <label>Phone</label>
-          <input type="text" className='form-control' name="setPhone" value={this.state.setPhone} onChange={this.changeHandler} />
+          <input type="number" className='form-control' name="setPhone" value={this.state.setPhone} onChange={this.changeHandler} />
           <label>Email</label>
-          <input type="text" className='form-control' name="setEmail" value={this.state.setEmail} onChange={this.changeHandler} />
+          <input type="email" className='form-control' name="setEmail" value={this.state.setEmail} onChange={this.changeHandler} />
         </form>
         <button className='btn btn-success form-control' onClick={this.addUser}>{this.state.setEdit ? "Update" : "Add"}</button>
         <div>
