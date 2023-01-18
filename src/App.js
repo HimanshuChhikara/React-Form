@@ -163,6 +163,7 @@ class App extends Component {
       let copy = this.state.user;
       Object.assign(copy[this.state.setActive],userData);
       this.setState(()=> {return {user: copy}});
+      this.setState(() => { return { setName: '', setEmail: '', setAge: '', setPhone: '' } })
       this.setState(() => {return {setEdit:false, setActive:null}})
 
     }
