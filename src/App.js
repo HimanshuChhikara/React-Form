@@ -1,6 +1,9 @@
 // import { Component } from 'react'; 
 import { Component } from "react";
 import "./App.css"
+import Button from "./components/button.component";
+import Form from "./components/form.component";
+import TableComponent from "./components/table.component";
 
 // function App() {
 //   const [name, setName] = useState("");
@@ -141,12 +144,6 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.setState(() => {
-  //     return {user: }
-  //   })
-  // }
-
   addUser = (e) => {
     e.preventDefault();
     let {setEmail,setName,setPhone,setAge} = this.state;
@@ -200,48 +197,10 @@ class App extends Component {
     return (
       <div>
         <h1>CRUD Application</h1>
-        <form>
-          <label>Name</label>
-          <input type="text" className='form-control' name="setName" value={this.state.setName} onChange={this.changeHandler} />
-          <label>Age</label>
-          <input type="number" className='form-control' name="setAge" value={this.state.setAge} onChange={this.changeHandler} />
-          <label>Phone</label>
-          <input type="number" className='form-control' name="setPhone" value={this.state.setPhone} onChange={this.changeHandler} />
-          <label>Email</label>
-          <input type="email" className='form-control' name="setEmail" value={this.state.setEmail} onChange={this.changeHandler} />
-        </form>
-        <button className='btn btn-success form-control' onClick={this.addUser}>{this.state.setEdit ? "Update" : "Add"}</button>
+        <Form onChangeHandler={this.changeHandler} state={this.state}/>
+        <Button onClick={this.addUser} state= {this.state}/>
         <div>
-          <table className="table table-bordered mt-5">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Edit</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.user.map((u, index) => {
-                  // console.log("U is == ", u)
-                  return (
-
-                    <tr key={index}>
-                      <td>{u.name}</td>
-                      <td>{u.age}</td>
-                      <td>{u.phone}</td>
-                      <td>{u.email}</td>
-                      <td><button className="btn btn-info" onClick={() => this.onEditClick(index)}>Edit</button></td>
-                      <td><button className="btn btn-danger" onClick={() => this.onDeleteClick(index)}>Delete</button></td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
+          <TableComponent user={this.state.user} onEditClick={this.onEditClick} onDeleteClick={this.onDeleteClick}/>
         </div>
       </div>
     )
