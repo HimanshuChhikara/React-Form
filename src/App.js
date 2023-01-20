@@ -4,6 +4,7 @@ import "./App.css"
 import Button from "./components/button.component";
 import Form from "./components/form.component";
 import TableComponent from "./components/table.component";
+import validator from 'validator'
 
 // function App() {
 //   const [name, setName] = useState("");
@@ -149,7 +150,7 @@ class App extends Component {
     let {setEmail,setName,setPhone,setAge} = this.state;
 
     if(setEmail=== '' || setName === '' || setAge === '' || setPhone === '') {
-      return window.alert("Fields are empty")
+      return window.alert("Some Fields are empty")
     }
 
     const userData = {
@@ -198,7 +199,7 @@ class App extends Component {
     return (
       <div>
         <h1>CRUD Application</h1>
-        <Form onChangeHandler={this.changeHandler} state={this.state}/>
+        <Form onChangeHandler={this.changeHandler} state={this.state} emailValidate={this.validateEmail}/>
         <Button onClick={this.addUser} state= {this.state}/>
         <div>
           <TableComponent user={this.state.user} onEditClick={this.onEditClick} onDeleteClick={this.onDeleteClick}/>
